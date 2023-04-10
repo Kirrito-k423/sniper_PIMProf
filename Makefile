@@ -34,6 +34,7 @@ $(STANDALONE): $(LIB_CARBON) $(LIB_SIFT) $(LIB_DECODER)
 	@$(MAKE) $(MAKE_QUIET) -C $(SIM_ROOT)/standalone
 
 $(PIN_FRONTEND):
+	echo tsj_debug4
 	@$(MAKE) $(MAKE_QUIET) -C $(SIM_ROOT)/frontend/pin-frontend
 
 # Disable original frontend
@@ -122,19 +123,19 @@ lib:
 
 showdebugstatus:
 ifneq ($(DEBUG),)
-	@echo Using flags: $(OPT_CFLAGS)
+	echo Using flags: $(OPT_CFLAGS)
 endif
 
 configscripts: dependencies
-	@mkdir -p config
-	@> config/sniper.py
-	@echo '# This file is auto-generated, changes made to it will be lost. Please edit Makefile instead.' >> config/sniper.py
-	@echo "target=\"$(SNIPER_TARGET_ARCH)\"" >> config/sniper.py
-	@./tools/makerelativepath.py pin_home "$(SIM_ROOT)" "$(PIN_HOME)" >> config/sniper.py
-	@./tools/makerelativepath.py xed_home "$(SIM_ROOT)" "$(XED_HOME)" >> config/sniper.py
-	@./tools/makerelativepath.py dynamorio_home "$(SIM_ROOT)" "$(DR_HOME)" >> config/sniper.py
-	@if [ $$(which git) ]; then if [ -e "$(SIM_ROOT)/.git" ]; then echo "git_revision=\"$$(git --git-dir='$(SIM_ROOT)/.git' rev-parse HEAD)\"" >> config/sniper.py; fi ; fi
-	@./tools/makebuildscripts.py "$(SIM_ROOT)" "$(PIN_HOME)" "$(DR_HOME)" "$(CC)" "$(CXX)" "$(SNIPER_TARGET_ARCH)"
+	mkdir -p config
+	> config/sniper.py
+	echo '# This file is auto-generated, changes made to it will be lost. Please edit Makefile instead.' >> config/sniper.py
+	echo "target=\"$(SNIPER_TARGET_ARCH)\"" >> config/sniper.py
+	./tools/makerelativepath.py pin_home "$(SIM_ROOT)" "$(PIN_HOME)" >> config/sniper.py
+	./tools/makerelativepath.py xed_home "$(SIM_ROOT)" "$(XED_HOME)" >> config/sniper.py
+	./tools/makerelativepath.py dynamorio_home "$(SIM_ROOT)" "$(DR_HOME)" >> config/sniper.py
+	if [ $$(which git) ]; then if [ -e "$(SIM_ROOT)/.git" ]; then echo "git_revision=\"$$(git --git-dir='$(SIM_ROOT)/.git' rev-parse HEAD)\"" >> config/sniper.py; fi ; fi
+	./tools/makebuildscripts.py "$(SIM_ROOT)" "$(PIN_HOME)" "$(DR_HOME)" "$(CC)" "$(CXX)" "$(SNIPER_TARGET_ARCH)"
 
 empty_config:
 	$(_MSG) '[CLEAN ] config'
@@ -172,4 +173,4 @@ empty_deps:
 	$(_CMD) find . -name \*.d -exec rm {} \;
 
 package_deps:
-	@BOOST_INCLUDE=$(BOOST_INCLUDE) ./tools/checkdependencies.py
+	BOOST_INCLUDE=$(BOOST_INCLUDE) ./tools/checkdependencies.py

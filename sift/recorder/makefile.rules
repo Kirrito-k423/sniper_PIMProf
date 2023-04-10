@@ -129,7 +129,7 @@ export COMPILE_PIN_FLAGS
 all: sift/libsift.a $(OBJDIR)sift_recorder
 
 $(OBJDIR)%$(OBJ_SUFFIX) : %.cc $(wildcard *.h)
-	$(_MSG) '[CXX   ]' $(subst $(shell readlink -f $(ROOT_DIR)/../..)/,,$(shell readlink -f $@))
+	$(_MSG) '[CXX 2  ]' $(subst $(shell readlink -f $(ROOT_DIR)/../..)/,,$(shell readlink -f $@))
 	$(_CMD) $(CXX) -I$(ROOT_DIR)/sift -I$(ROOT_DIR)/.. $(TARGET_ARCH) $(COMPILE_PIN_FLAGS) -c -o $@ $<
 
 sift/sift_reader.h: sift
@@ -141,7 +141,7 @@ sift/libsift.a: sift/sift_reader.h $(wildcard sift/*.h) $(wildcard sift/*.cc)
 	@$(MAKE) -C sift
 
 $(OBJDIR)sift_recorder: $(OBJECTS) $(LINK_LIBS) $(CONTROLLERLIB)
-	$(_MSG) '[LD    ]' $(subst $(shell readlink -f $(ROOT_DIR)/../..)/,,$(shell readlink -f $@))
+	$(_MSG) '[LD  2  ]' $(subst $(shell readlink -f $(ROOT_DIR)/../..)/,,$(shell readlink -f $@))
 	$(_CMD) $(LINKER) $(LINK_FLAGS) $(LINK_EXE) $@ $(^:%.h=) $(TOOL_LPATHS) $(TOOL_LIBS)
 
 CLEAN=$(findstring clean,$(MAKECMDGOALS))

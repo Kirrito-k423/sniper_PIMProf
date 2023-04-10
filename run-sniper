@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python2
 
 import sys, os, time, getopt, tempfile, subprocess, threading, platform, pprint, Queue, socket, pipes, commands
 sys.path.append(os.path.join(os.path.dirname(__file__), 'tools'))
@@ -620,7 +620,8 @@ if tracegen:
   # Start app(s) with trace recorder in a thread
   def run_sift_recorder(tracecmd):
     if verbose:
-      print '[SNIPER] Running', tracecmd
+      print '[SNIPER] Running sift_recorder', tracecmd
+    print(tracecmd)
     sys.stdout.flush()
     sys.stderr.flush()
     time.sleep(1)
@@ -720,6 +721,8 @@ if standalone:
     f = open(fn, 'w')
     # When using GDB in standalone mode, do not set the LD_LIBRARY_PATH for GDB, but instead set the shared library path inside GDB for debugging Sniper-standalone
     f.write("set environment LD_LIBRARY_PATH = %s\n" % env['LD_LIBRARY_PATH'])
+    print("set env")
+    print(env['LD_LIBRARY_PATH'])
     del env['LD_LIBRARY_PATH']
     # Create a GDB command file to handle --gdb, --gdb-wait and --gdb-quit for standalone mode
     if not gdb_wait:
@@ -732,18 +735,20 @@ if standalone:
       f.write('end\n')
     f.close()
     gdbcmd = 'gdb -quiet --command=%(fn)s %(HOME)s/lib/sniper --args ' % locals()
+    print(gdbcmd)
   elif use_wrap_sim:
     gdbcmd = '%(use_wrap_sim)s ' % locals()
   else:
     gdbcmd = ''
   cmd = gdbcmd + '%(HOME)s/lib/sniper' % locals() + optcmd
+  print(cmd)
 else:
   if follow_execv:
     pintool = 'follow_execv'
   else:
     pintool = 'pin_sim'
   cmd = '%(pin_home)s/%(arch)s/bin/pinbin %(pinoptions)s -t %(sim_root)s/lib/%(pintool)s' % locals() + optcmd + ' -- ' + ' '.join(cmdline)
-
+  print(cmd)
 queue = Queue.Queue()
 
 
@@ -780,10 +785,12 @@ def execute():
   if use_perf:
     cmd = [ 'perf', 'record', '--force', '--output', os.path.join(outputdir, 'perf.data'), '--' ] + cmd
 
-  if verbose:
-    print '[SNIPER] Running', cmd
+  # if verbose:
+  print '[SNIPER] Running', cmd
   sys.stdout.flush()
   sys.stderr.flush()
+  print("set env")
+  print(env['LD_LIBRARY_PATH'])
   subproc = subprocess.Popen(cmd, env = env)
 
   log_memory(subproc.pid)
@@ -860,10 +867,14 @@ print '[SNIPER] Start'
 
 try:
   if use_gdb and not standalone:
+    print("exe")
+    print(cmd)
     rc = debugpin.execute_gdb(cmd = cmd, env = env, pin_home = pin_home, arch = arch, wait = gdb_wait, quit = gdb_quit)
   elif use_appdebug and not (appdebug_manual or appdebug_nowait):
     rc = execute_appdebug()
   else:
+    print("exe2")
+    print(cmd)
     rc = execute()
 
 except KeyboardInterrupt:

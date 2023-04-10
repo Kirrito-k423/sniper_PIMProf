@@ -31,18 +31,19 @@ include ../common/Makefile.common
 CXXFLAGS+=-fPIC $(CXXFLAGS_ARCH)
 
 %.o : %.cc $(wildcard *.h) Makefile
-	$(_MSG) '[CXX   ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
+	$(_MSG) '[CXX 3  ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
 	$(_CMD) $(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(TARGET) : $(OBJECTS)
-	$(_MSG) '[AR    ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
+	$(_MSG) '[AR  3  ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
 	$(_CMD) $(AR) rcs $@ $^
 
 siftdump : siftdump.o $(TARGET)
-	$(_MSG) '[CXX   ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
+	$(_MSG) '[CXX 3  ]' $(subst $(shell readlink -f $(SIM_ROOT))/,,$(shell readlink -f $@))
 	$(_CMD) $(CXX) $(CXXFLAGS_ARCH) -o $@ $^ -L. -lsift -lz
 
 recorder : $(TARGET)
+   echo tsj_debug1
 	@$(MAKE) $(MAKE_QUIET) -C recorder
 
 clean :

@@ -18,11 +18,11 @@ endif
 all: libsift.a
 
 %.o: %.cc $(wildcard *.h)
-	$(_MSG) '[CXX   ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../..)/,,$(shell readlink -f $@))
+	$(_MSG) '[CXX 1  ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../..)/,,$(shell readlink -f $@))
 	$(_CMD) g++ -g -std=c++0x $(COMPILE_PIN_FLAGS) -c -o $@ $<
 
 libsift.a: $(OBJECTS)
-	$(_MSG) '[LD    ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../..)/,,$(shell readlink -f $@))
+	$(_MSG) '[LD  1  ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../..)/,,$(shell readlink -f $@))
 	$(_CMD) ar rcs $@ $(^:%.h=)
 
 # siftdump: siftdump.o libsift.a

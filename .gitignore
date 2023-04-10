@@ -26,6 +26,12 @@ graphite.out
 cpi-stack.jpg
 output_files
 tools/cpistack-collect/cpistack-*
+*.s
+*.out
+test/hellow
+
+# test binary files
+test/fft
 
 # compiled libraries
 lib/libcarbon_sim.a
@@ -61,3 +67,18 @@ mbuild
 # Pin3 output
 frontend/pin-frontend/obj-intel64
 sift/recorder/obj-intel64
+sift/recorder/sift
+frontend/pin-frontend
+
+# Instrumented Binary
+*.inj
+*.dump
+
+# GAP benchmark pre-generated graphs.
+*.sg
+
+# viz file
+PIMProf/test/inj_cpu/viz
+
+# cache file
+.ccls-cache/

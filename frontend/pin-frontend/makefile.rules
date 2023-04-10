@@ -128,7 +128,7 @@ export COMPILE_PIN_FLAGS
 all: sift/libsift.a $(OBJDIR)pin_frontend
 
 $(OBJDIR)%$(OBJ_SUFFIX) : %.cc $(wildcard *.h) $(wildcard ../*.h) $(wildcard ../*.tcc)
-	$(_MSG) '[CXX   ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../)/,,$(shell readlink -f $@))
+	$(_MSG) '[CXX 7  ]' $(subst $(shell readlink -f $(ROOT_DIR)/../../)/,,$(shell readlink -f $@))
 	$(_CMD) $(CXX) -I$(ROOT_DIR)/sift -I$(ROOT_DIR)/.. $(TARGET_ARCH) $(COMPILE_PIN_FLAGS) -c -o $@ $<
 
 sift/sift_reader.h: sift

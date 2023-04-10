@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <sstream>
 
-#define DEBUG
+#define DEBUG 1
 
 String Config::m_knob_output_directory;
 UInt32 Config::m_knob_total_cores;
