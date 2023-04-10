@@ -1,0 +1,172 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(gdb)PinTool 附加",
+			"type": "cppdbg",
+			"request": "attach",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/pin_kit/intel64/bin/pinbin",
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "为 gdb 启用整齐打印",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "将反汇编风格设置为 Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "(gdb)PinTool 启动",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/pin_kit/intel64/bin/pinbin",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${fileDirname}",
+			"environment": [
+				{
+					"name": "LD_LIBRARY_PATH",
+					"value": "$LD_LIBRARY_PATH:/staff/shaojiemike/github/sniper_PIMProf/python_kit/intel64/lib:/lib/x86_64-linux-gnu:/staff/shaojiemike/github/sniper_PIMProf/xed_kit/lib"
+				}
+			],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "为 gdb 启用整齐打印",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "将反汇编风格设置为 Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "(gdb)test 启动",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/test/hellow/a.out",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "为 gdb 启用整齐打印",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "将反汇编风格设置为 Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "(gdb)sift_recorder 启动",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/sift/recorder/obj-intel64/sift_recorder",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "为 gdb 启用整齐打印",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "将反汇编风格设置为 Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "Python: 使用 PID 连接",
+			"type": "python",
+			"request": "attach",
+			"processId": "${command:pickProcess}"
+		},
+		{
+			"name": "Python2: 当前文件",
+			"type": "python",
+			"request": "launch",
+			"stopOnEntry": true,
+			"python": "/usr/bin/python2",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/run-sniper",
+			"args": [
+				// "--gdb",
+				// "-viz",
+				"-v",
+				"--roi",
+				"-n",
+				"1",
+				"-c",
+				"pimprof_cpu",
+				"-d",
+				"inj_cpu",
+				"--",
+				"/staff/shaojiemike/github/sniper_PIMProf/PIMProf/test/test.inj"
+			],
+			"console": "integratedTerminal",
+			"justMyCode": true
+			// "subProcess": true,
+			// "port": 5678
+		},
+		{
+			"name": "(gdb) 启动",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/staff/shaojiemike/github/sniper_PIMProf/run-sniper",
+			"args": [
+				"--roi",
+				"-n",
+				"1",
+				"-c",
+				"pimprof_cpu",
+				"-d",
+				"inj_cpu",
+				"--",
+				"/staff/shaojiemike/github/sniper_PIMProf/PIMProf/test/test.inj"
+			],
+			"stopOnEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [
+				{
+					"name": "OMP_NUM_THREADS",
+					"value": "1"
+				}
+			],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "为 gdb 启用整齐打印",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "将反汇编风格设置为 Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		}
+	]
+}
