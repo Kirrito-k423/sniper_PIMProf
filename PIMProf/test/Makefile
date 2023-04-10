@@ -1,7 +1,7 @@
 include ../buildconf.makefile
 
 CXX = /usr/bin/clang++-10
-PIMPROF_ROOT = /home/warsier/Documents/PIMProf_solver/
+PIMPROF_ROOT = /staff/shaojiemike/github/PIMProf
 
 #ifndef PIMPROF_DIR
 #$(error PIMPROF_DIR is not set in Makefile.config)
@@ -17,8 +17,11 @@ TEST_OBJ_2          := test.o.2 print4.o.2 pthreads.o.2
 TEST_EXE_2          := test.exe.2
 
 CXXFLAGS := -fPIC -std=c++11 -g -O3 -fopenmp -I$(PIMPROF_ROOT)/LLVMAnalysis
-CXX_INJ_FLAGS = $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/build/LLVMAnalysis/libAnnotationInjection.so
-CXX_OFF_FLAGS += $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/build/LLVMAnalysis/libOffloaderInjection.so 
+# CXX_INJ_FLAGS = $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/build/LLVMAnalysis/libAnnotationInjection.so
+# CXX_OFF_FLAGS += $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/build/LLVMAnalysis/libOffloaderInjection.so 
+
+CXX_INJ_FLAGS = $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/debug/LLVMAnalysis/libAnnotationInjection.so
+CXX_OFF_FLAGS += $(CXXFLAGS) $(SNIPER_CFLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/debug/LLVMAnalysis/libOffloaderInjection.so 
 
 test.inj: test.cpp # print4.cpp pthreads.cpp
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(CXX_INJ_FLAGS) -o $@ $^ -pthread

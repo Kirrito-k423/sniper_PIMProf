@@ -2,8 +2,8 @@
 include ../buildconf.makefile
 
 CXX = /usr/bin/clang++-10
-PIMPROF_ROOT = /home/warsier/Documents/PIMProf_solver/
-PIMPROF_MODE = build
+PIMPROF_ROOT = /staff/shaojiemike/github/PIMProf
+PIMPROF_MODE = debug
 VTUNE_ROOT = /opt/intel/oneapi/vtune/latest/
 
 CXX_FLAGS = -std=c++11 -O3 -Wall -fopenmp -g -I$(PIMPROF_ROOT)/LLVMAnalysis
