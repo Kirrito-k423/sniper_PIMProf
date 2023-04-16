@@ -75,6 +75,7 @@ frontend/pin-frontend
 *.dump
 
 # GAP benchmark pre-generated graphs.
+*.wsg
 *.sg
 
 # viz file

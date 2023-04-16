@@ -80,6 +80,9 @@ bool Sift::Reader::initStream()
    std::cerr << "[DEBUG:" << m_id << "] InitStream Attempting Open" << std::endl;
    #endif
 
+   #if TSJ > 0
+   std::cerr << "[TSJ-DEBUG]:SIFT::Reader input read file" << m_filename << std::endl;
+   #endif
    inputstream = new std::ifstream(m_filename, std::ios::in);
 
    if ((!inputstream->is_open()) || (!inputstream->good()))

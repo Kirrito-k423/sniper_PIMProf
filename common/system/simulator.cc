@@ -501,4 +501,14 @@ void Simulator::PIMProfPrintStats() {
       m_pimprof_thread_stats[i]->PrintBBLSwitchCount(ofs);
    }
    ofs.close();
+   
+   // [TSJ-DEBUG]
+   ofs.open(m_config.formatOutputFileName("pimprof_debug.out").c_str());
+   for (size_t i = 0; i < m_pimprof_thread_stats.size(); ++i) {
+      m_pimprof_thread_stats[i]->PrintAllDotGraph(ofs);
+   }
+   for (size_t i = 0; i < m_pimprof_thread_stats.size(); ++i) {
+      m_pimprof_thread_stats[i]->PrintAllBBLOccurrence(ofs);
+   }
+   ofs.close();
 }

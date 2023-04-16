@@ -43,7 +43,7 @@ siftdump : siftdump.o $(TARGET)
 	$(_CMD) $(CXX) $(CXXFLAGS_ARCH) -o $@ $^ -L. -lsift -lz
 
 recorder : $(TARGET)
-   echo tsj_debug1
+	echo tsj_debug1
 	@$(MAKE) $(MAKE_QUIET) -C recorder
 
 clean :
