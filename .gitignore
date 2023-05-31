@@ -83,3 +83,10 @@ PIMProf/test/inj_cpu/viz
 
 # cache file
 .ccls-cache/
+
+
+# vscode file
+settings.json
+
+*.txt
+*.file
