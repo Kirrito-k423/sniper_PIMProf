@@ -19,4 +19,4 @@ inj: $(KERNELS:=.inj)
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
 
 clean:
-	rm -f $(KERNELS)
+	rm -f $(KERNELS)  *.inj *.inj2 *.pim *.pim.dump *.vtune *.vtune.dump *.ll

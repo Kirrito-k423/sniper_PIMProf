@@ -1,0 +1,36 @@
+Matrix-Vector Multiplication (GEMV)
+
+Compilation instructions:
+
+    make
+
+Execution instructions
+
+    ./gemv
+
+```bash
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:41:11]
+$ export OMP_NUM_THREADS=1 && ./gemv.inj
+Kernel Time (ms): 173.790000
+sum(x) = 33558528.000000, sum(Ax) = 55367064.001716
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:41:47]
+$ export OMP_NUM_THREADS=4 && ./gemv.inj
+Kernel Time (ms): 99.271000
+sum(x) = 33558528.000000, sum(Ax) = 55367064.001716
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:41:53]
+$ export OMP_NUM_THREADS=16 && ./gemv.inj
+Kernel Time (ms): 98.030000
+sum(x) = 33558528.000000, sum(Ax) = 55367064.001716
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:41:59]
+$ export OMP_NUM_THREADS=32 && ./gemv.inj
+Kernel Time (ms): 95.614000
+sum(x) = 33558528.000000, sum(Ax) = 55367064.001716
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:42:20]
+$ export OMP_NUM_THREADS=72 && ./gemv.inj
+Kernel Time (ms): 78.790000
+sum(x) = 33558528.000000, sum(Ax) = 55367064.001716
+```

@@ -1,0 +1,34 @@
+Select (SEL)
+
+Compilation instructions
+
+    make
+
+Execution instructions
+
+    ./sel -i 1258291200 -t 4
+
+Read more
+J. Gomez-Luna et al., “In-place Data Sliding Algorithms for Many-core Architectures,” ICPP 2015.
+
+## Result
+
+Because of the competition
+
+```bash
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/select on git:dev x [15:25:18]
+$ ./select.inj -t 16
+nr_elements     16777216        Total count = 8388607   Kernel Time (ms): 533.168000
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/select on git:dev x [15:26:23]
+$ ./select.inj -t 8
+nr_elements     16777216        Total count = 8388607   Kernel Time (ms): 513.592000
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/select on git:dev x [15:26:27]
+$ ./select.inj -t 4
+nr_elements     16777216        Total count = 8388607   Kernel Time (ms): 460.731000
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/select on git:dev x [15:26:30]
+$ ./select.inj -t 1
+nr_elements     16777216        Total count = 8388607   Kernel Time (ms): 235.092000
+```
