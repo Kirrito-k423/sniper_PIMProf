@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#include "hashJoinGlobal.h"
 
 void write_buffer(vector<pair<string, string> > & buf, string fpath)
 {

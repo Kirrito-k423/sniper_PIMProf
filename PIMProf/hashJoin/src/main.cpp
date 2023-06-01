@@ -1,13 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// number of tuples in one block
-int TB = 100;
-// folder to store intermediate files
-string INTER_PATH = "../files/inter_files";
 
-#include "sort_merge_join.cpp"
-#include "hash_join.cpp"
+#include "sort_merge_join.h"
+#include "hash_join.h"
 
 int main(int argc, char **argv)
 {
