@@ -1,0 +1,31 @@
+include ../buildconf.makefile
+
+CXX = /usr/bin/clang++-10
+CC=/usr/bin/clang-10
+PIMPROF_ROOT = /staff/shaojiemike/github/PIMProf
+PIMPROF_MODE = debug
+SNIPER_ROOT ?= /staff/shaojiemike/github/sniper_PIMProf/
+SNIPER_CFLAGS:=-mno-sse4 -mno-sse4.1 -mno-sse4.2 -mno-sse4a -mno-avx -mno-avx2 -I${SNIPER_ROOT}/include
+
+CXX_FLAGS = -c -g -openmp -O3 -D_OPT -p -Wall -fopenmp -g -I$(PIMPROF_ROOT)/LLVMAnalysis
+CC_FLAGS = -c -g -openmp -O3 -D_OPT -p -Wall -fopenmp -g -I$(PIMPROF_ROOT)/LLVMAnalysis
+CXX_INJ_FLAGS = $(CXX_FLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/$(PIMPROF_MODE)/LLVMAnalysis/libAnnotationInjection.so
+CC_INJ_FLAGS = $(CC_FLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/$(PIMPROF_MODE)/LLVMAnalysis/libAnnotationInjection.so
+LINK_INJ_OPTION = -fopenmp -g  -Xclang -load -Xclang $(PIMPROF_ROOT)/$(PIMPROF_MODE)/LLVMAnalysis/libAnnotationInjection.so
+
+
+SRC_DIR = .
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:.cpp=.o)
+KERNELS = svm
+
+inj: $(KERNELS:=.inj)
+
+%.inj: ${OBJS}
+	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(LINK_INJ_OPTION) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
+
+%.o: %.cpp
+	export PIMPROFINJECTMODE=SNIPER && $(CXX) -c $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS)
+
+clean:
+	rm -f $(KERNELS) *.inj *.inj2 *.pim *.pim.dump *.vtune *.vtune.dump *.ll *.o
