@@ -35,5 +35,27 @@ make -f makefile.omp
 dataset from http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/SVM-RFE.tar.gz
 
 ```bash
-./svm.inj ./SVM-RFE/outData.txt 253 15154 20
+./svm.inj ./SVM-RFE/outData.txt 253 15154 4
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/svm on git:dev x [16:02:26]
+$ export OMP_NUM_THREADS=32 && time ./svm.inj ./SVM-RFE/outData.txt 253 15154 4
+Reading data set time: 1.18s
+Remains(15154), time(0.24s), Deleted(4011)
+Remains(15153), time(0.20s), Deleted(14260)
+Remains(15152), time(0.15s), Deleted(5080)
+Remains(15151), time(0.14s), Deleted(8490)
+SVM Training time: 0.861605s
+Data prepare + SVM Training time: 1.12s
+./svm.inj ./SVM-RFE/outData.txt 253 15154 4  28.42s user 0.28s system 1239% cpu 2.316 total
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/svm on git:dev x [16:02:43]
+$ export OMP_NUM_THREADS=1 && time ./svm.inj ./SVM-RFE/outData.txt 253 15154 4
+Reading data set time: 1.17s
+Remains(15154), time(0.65s), Deleted(4011)
+Remains(15153), time(0.58s), Deleted(14260)
+Remains(15152), time(0.58s), Deleted(5080)
+Remains(15151), time(0.58s), Deleted(8490)
+SVM Training time: 2.98766s
+Data prepare + SVM Training time: 3.25s
+./svm.inj ./SVM-RFE/outData.txt 253 15154 4  4.39s user 0.04s system 99% cpu 4.436 total
 ```

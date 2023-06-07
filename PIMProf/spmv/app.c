@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
 
     // Calculating result on CPU
     PRINT_INFO(p.verbosity >= 1, "Calculating result on CPU");
-    omp_set_num_threads(4);
+    // omp_set_num_threads(4);
     Timer timer;
     startTimer(&timer);
     #pragma omp parallel for

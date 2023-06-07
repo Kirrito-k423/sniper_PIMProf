@@ -8,6 +8,8 @@ Execution instructions
 
     ./gemv
 
+有少许加速
+
 ```bash
 # shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf/gemv on git:dev x [15:41:11]
 $ export OMP_NUM_THREADS=1 && ./gemv.inj

@@ -7,3 +7,19 @@ Compilation instructions
 Execution instructions
 
     ./mlp_openmp
+
+少许加速
+
+```bash
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf on git:dev x [15:46:37]
+$ export OMP_NUM_THREADS=32 && time ~/github/sniper_PIMProf/PIMProf/mlp/mlp.inj
+Kernel 337.797000
+SUM = 0
+~/github/sniper_PIMProf/PIMProf/mlp/mlp.inj  16.76s user 1.44s system 628% cpu 2.895 total
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf on git:dev x [15:47:00]
+$ export OMP_NUM_THREADS=1 && time ~/github/sniper_PIMProf/PIMProf/mlp/mlp.inj
+Kernel 1198.769000
+SUM = 0
+~/github/sniper_PIMProf/PIMProf/mlp/mlp.inj  2.65s user 1.01s system 99% cpu 3.664 total
+```
