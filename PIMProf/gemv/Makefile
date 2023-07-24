@@ -17,7 +17,10 @@ SRCS = gemv_openmp.c
 KERNELS = gemv
 
 inj: $(KERNELS:=.inj)
+normal: $(KERNELS:=.out)
 
+%.out: ${SRCS}
+	$(CC) $(CC_FLAGS) -o $@ $^
 %.inj: ${SRCS}
 	export PIMPROFINJECTMODE=SNIPER && $(CC) $(CC_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
 

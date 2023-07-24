@@ -5,8 +5,21 @@
 
 int main(int argc, char *argv[])
 {
-  const size_t rows = 20480;
-  const size_t cols = 8192;
+    size_t rows = 20480;
+    size_t cols = 8192;
+
+    if (argc > 1) {
+        rows = atoi(argv[1]);
+
+    }
+
+    if (argc > 2) {
+        cols = atoi(argv[2]); 
+
+    }
+
+    /* std::cout << "rows: " << rows << std::endl; */
+    /* std::cout << "cols: " << cols << std::endl; */
 
   double **A, *b, *x;
 

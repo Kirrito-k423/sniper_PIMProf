@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+// #include<omp.h>
 using namespace std;
 
 
@@ -201,8 +202,12 @@ public:
         hash_join_open();
 
         // this is equaivalent to gen_next() function
-        for(int i = 0; i < NBK; i++)
+        // #pragma omp parallel for
+        for(int i = 0; i < NBK; i++){
+            // int id = omp_get_thread_num();
+            // printf("My ID is %d\n", id);   
             hash_join_gen(i);
+        }
 
         hash_join_close();
 

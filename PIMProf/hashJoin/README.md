@@ -8,6 +8,13 @@ Sort Merge Join and Hash Join algorithm for natural join of two database relatio
 ./hashjoin.inj checker/R.file checker/S.file hash 40
 ```
 
+### dataset
+
+```bash
+python generate.py ./R.file 100000 R
+python generate.py ./S.file 100000 S
+```
+
 ### problem
 
 原本的程序不支持并行加速，不是并行的代码
@@ -39,3 +46,5 @@ out_hash.txt
 done
 ./hashjoin.inj checker/R.file checker/S.file hash 40  0.13s user 0.01s system 66% cpu 0.208 total
 ```
+
+omp parallel for will seg fault

@@ -26,3 +26,22 @@ INFO:    Calculating result on CPU
 INFO:        Elapsed time: 8.939000 ms
 ./spmv/spmv.inj -f ./spmv/data/bcsstk30.mtx  0.23s user 0.03s system 103% cpu 0.248 total
 ```
+
+change omp 2 32
+
+```bash
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf on git:dev x [20:51:04]
+$ export OMP_NUM_THREADS=32 && time ./spmv/spmv.inj -f ./spmv/data/bcsstk30.mtx.16.mtx
+INFO:    Reading matrix ./spmv/data/bcsstk30.mtx.16.mtx
+INFO:        462784 rows, 28924 columns, 16579328 nonzeros
+INFO:    Calculating result on CPU
+INFO:        Elapsed time: 20.048000 ms
+./spmv/spmv.inj -f ./spmv/data/bcsstk30.mtx.16.mtx  4.07s user 0.27s system 140% cpu 3.087 total
+
+# shaojiemike @ snode6 in ~/github/sniper_PIMProf/PIMProf on git:dev x [20:51:31]
+$ export OMP_NUM_THREADS=1 && time ./spmv/spmv.inj -f ./spmv/data/bcsstk30.mtx.16.mtx
+INFO:    Reading matrix ./spmv/data/bcsstk30.mtx.16.mtx
+INFO:        462784 rows, 28924 columns, 16579328 nonzeros
+INFO:    Calculating result on CPU
+INFO:        Elapsed time: 56.019001 ms
+```

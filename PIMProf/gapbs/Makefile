@@ -13,15 +13,19 @@ CXX_INJ_FLAGS = $(CXX_FLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/$(PIMPROF_MOD
 CXX_OFF_FLAGS += $(CXX_FLAGS) -Xclang -load -Xclang $(PIMPROF_ROOT)/$(PIMPROF_MODE)/LLVMAnalysis/libOffloaderInjection.so
 LD_FLAGS = -pthread -Wl,-Bstatic -L$(SNIPER_ROOT)/lib -Wl,-Bdynamic -lm
 
-KERNELS = bc bfs cc pr sssp # cc_sv tc
+KERNELS = bc bfs bfs20 cc pr sssp # cc_sv tc
 SUITE = $(KERNELS) converter
 #SUITE_ZSIM = $(SUITE:=.zsim)
 #SUITE_FINAL = $(SUITE:=.final)
 
+normal: $(KERNELS:=.out)
 inj: $(KERNELS:=.inj)
 inj2: $(KERNELS:=.inj2)
 pim: $(KERNELS:=.pim)
 vtune: $(KERNELS:=.vtune)
+
+%.out: src/%.cc src/*.h
+	$(CXX) $(CXX_FLAGS) $< -o $@
 
 %.inj: src/%.cc src/*.h
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $< $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
