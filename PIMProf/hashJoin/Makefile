@@ -15,8 +15,11 @@ KERNELS = hashjoin
 
 inj: $(KERNELS:=.inj)
 
+injf: $(KERNELS:=.injf)
 %.inj: ${SRCS}
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
+%.injf: ${SRCS}
+	export PIMPROFINJECTMODE=SNIPER2 && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
 
 clean:
 	rm -f $(KERNELS)  *.inj *.inj2 *.pim *.pim.dump *.vtune *.vtune.dump *.ll

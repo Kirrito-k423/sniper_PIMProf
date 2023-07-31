@@ -20,6 +20,7 @@ SUITE = $(KERNELS) converter
 
 normal: $(KERNELS:=.out)
 inj: $(KERNELS:=.inj)
+injf: $(KERNELS:=.injf)
 inj2: $(KERNELS:=.inj2)
 pim: $(KERNELS:=.pim)
 vtune: $(KERNELS:=.vtune)
@@ -30,7 +31,7 @@ vtune: $(KERNELS:=.vtune)
 %.inj: src/%.cc src/*.h
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $< $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
 
-%.inj2: src/%.cc src/*.h
+%.injf: src/%.cc src/*.h
 	export PIMPROFINJECTMODE=SNIPER2 && $(CXX) $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $< $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
 
 # # PIMProf-auto

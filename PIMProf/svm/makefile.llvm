@@ -23,7 +23,9 @@ inj: $(KERNELS:=.inj)
 
 %.inj: ${OBJS}
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) $(LINK_INJ_OPTION) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
-
+%.inj2: ${SRCS}
+	export PIMPROFINJECTMODE=SNIPER2 && $(CXX) $(LINK_INJ_OPTION) -o $@ $^ $(LD_FLAGS) > $(@:.inj=.inj.dump) 2>&1
+	
 %.o: %.cpp
 	export PIMPROFINJECTMODE=SNIPER && $(CXX) -c $(CXX_INJ_FLAGS) $(SNIPER_CFLAGS) -o $@ $^ $(LD_FLAGS)
 

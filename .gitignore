@@ -29,6 +29,7 @@ tools/cpistack-collect/cpistack-*
 *.s
 *.out
 test/hellow
+*.mtx
 
 # test binary files
 test/fft
@@ -72,6 +73,7 @@ frontend/pin-frontend
 
 # Instrumented Binary
 *.inj
+*.injf
 *.dump
 
 # GAP benchmark pre-generated graphs.
